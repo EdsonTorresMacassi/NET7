@@ -1,0 +1,49 @@
+version: "3.5"
+
+services:
+  service-sql:
+    image: mcr.microsoft.com/mssql/server:latest
+    container_name: bd-sql
+    restart: always
+    ports:
+    - 1443:1433
+    environment:
+    - ACCEPT_EULA=Y
+    - SA_PASSWORD=Sistem@s1987
+    networks:
+    - aforo255-test
+  service-postgres:
+    image: postgres:latest
+    container_name: bd-postgres
+    restart: always
+    environment:
+    - POSTGRES_PASSWORD=Sistem@s1987
+    ports:
+    - 5442:5432
+    networks:
+    - aforo255-test
+  service-mysql:
+    image: mysql:latest
+    container_name: bd-mysql
+    restart: always
+    environment:
+    - MYSQL_ROOT_PASSWORD=Sistem@s1987
+    ports:
+    - 3316:3306
+    networks:
+    - aforo255-test  
+  service-mongo:
+    image: mongo:latest
+    container_name: bd-mongo
+    restart: always
+    environment:
+    - MONGO_INITDB_ROOT_USERNAME=root
+    - MONGO_INITDB_ROOT_PASSWORD=Sistem#s1987
+    ports:
+    - 27027:27017
+    networks:
+    - aforo255-test
+  
+networks:
+  aforo255-test:
+    name: aforo255-test

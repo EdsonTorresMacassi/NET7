@@ -1,0 +1,44 @@
+/*LOCAL*/
+{
+  "cn": {
+    "sql": "Server=localhost,1443;Database=db_security;User Id=sa;Password=Sistem@s1987;Trust Server Certificate=true;",
+    "mysql": "server=localhost;port=3316;database=db_operation;user=root;password=Sistem@s1987",
+    "postgres": "Server=localhost;Port=5442;Database=db_invoice;User Id=postgres;Password=Sistem@s1987;",
+    "mongo": "mongodb://root:Sistem#s1987@localhost:27027",
+    "env": "local"
+  },
+  "bd": {
+    "mongo": "db_transaction",
+    "env": "local"
+  }
+}
+
+/*DOCKER*/
+{
+  "cn": {
+    "sql": "Server=bd-sql,1433;Database=db_security;User Id=sa;Password=Sistem@s1987;Trust Server Certificate=true;",
+    "mysql": "server=bd-mysql;port=3306;database=db_operation;user=root;password=Sistem@s1987",
+    "postgres": "Server=bd-postgres;Port=5432;Database=db_invoice;User Id=postgres;Password=Sistem@s1987;",
+    "mongo": "mongodb://root:Sistem#s1987@bd-mongo:27017",
+    "env": "docker"
+  },
+  "bd": {
+    "mongo": "db_transaction",
+    "env": "docker"
+  }
+}
+
+/*UBICARTE EN EL PROYECTO | PUBLICAR Y GENERAR LA IMAGEN*/
+
+dotnet restore
+dotnet publish -c Release -o ./publish
+docker build -t edsontorresmacassi/img-app-security .
+docker build -t edsontorresmacassi/img-app-pay .
+docker build -t edsontorresmacassi/img-app-transaction .
+docker build -t edsontorresmacassi/img-app-invoice .
+
+docker login
+docker push edsontorresmacassi/img-app-security
+docker push edsontorresmacassi/img-app-pay
+docker push edsontorresmacassi/img-app-transaction
+docker push edsontorresmacassi/img-app-invoice

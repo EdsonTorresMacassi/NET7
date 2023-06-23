@@ -1,0 +1,39 @@
+version: "3.5"
+ 
+services:
+  security:
+    image: edsontorresmacassi/img-app-security
+    container_name: app-security
+    restart: always
+    ports:
+    - 9001:8080
+    networks:
+    - aforo255-test
+  pay:
+    image: edsontorresmacassi/img-app-pay
+    container_name: app-pay
+    restart: always
+    ports:
+    - 9002:8080
+    networks:
+    - aforo255-test
+  transaction:
+    image: edsontorresmacassi/img-app-transaction
+    container_name: app-transaction
+    restart: always
+    ports:
+    - 9003:8080
+    networks:
+    - aforo255-test
+  invoice:
+    image: edsontorresmacassi/img-app-invoice
+    container_name: app-invoice
+    restart: always
+    ports:
+    - 9004:8080
+    networks:
+    - aforo255-test
+
+networks:
+  aforo255-test:
+    name: aforo255-test

@@ -1,0 +1,60 @@
+_format_version: "2.1"
+ 
+services:
+  - name: security-service
+    url: http://host.docker.internal:9001/api/auth
+    plugins:
+      - name: jwt
+        config:
+          anonymous: 9ddccc14-6866-584f-a82b-51e47864af89
+    routes:
+      - name: security-route
+        paths:
+          - /api/token
+  - name: pay-service
+    url: http://host.docker.internal:9002/api/pay/pay
+    routes:
+      - name: pay-route
+        paths:
+          - /api/pay/pay
+  - name: transaction-service
+    url: http://host.docker.internal:9003/api/transaction
+    routes:
+      - name: transaction-route
+        paths:
+          - /api/transaction
+  - name: invoice-service
+    url: http://host.docker.internal:9004/api/invoice/invoice
+    routes:
+      - name: invoice-route
+        paths:
+          - /api/invoice/invoice
+
+plugins:
+- name: cors
+  config: 
+    origins:
+    - "*"
+    methods:
+    - GET
+    - POST
+    headers:
+    - "*"
+    exposed_headers:
+    - "*"
+    credentials: true
+    max_age: 3600
+    preflight_continue: false
+- name: jwt
+  config: 
+    secret_is_base64: false
+    run_on_preflight: true
+consumers:
+  - username: login_issuer
+    custom_id: aforo255_id
+  - username: anonymous_users
+    id: 9ddccc14-6866-584f-a82b-51e47864af89
+jwt_secrets:
+  - consumer: login_issuer
+    secret: "abcdefghijklmnopqrstuwxyz0123456789"
+  - consumer: anonymous_users

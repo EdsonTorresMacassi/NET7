@@ -1,0 +1,74 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{ACADEF3E-B946-48C5-B25C-96F1D00F8864}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution-Items", "Solution-Items", "{7D6EDE96-0BB3-46B2-B0D9-AD9A8E287BBC}"
+	ProjectSection(SolutionItems) = preProject
+		Archivo configuración config server.json = Archivo configuración config server.json
+		docker-compose-app.yml = docker-compose-app.yml
+		docker-compose-databases.yml = docker-compose-databases.yml
+		docker-compose-gateway.yml = docker-compose-gateway.yml
+		docker-compose-services.yml = docker-compose-services.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microservices", "Microservices", "{1A214DEF-F7BD-4FCC-A40A-C6A1D3F3D461}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integrations", "Integrations", "{8CD17B18-AA27-4D4D-85E8-63CC28572199}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kong", "Kong", "{809F717D-1678-42D0-93E9-F6EAF7D22D58}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{DF514D52-5023-4763-8136-67DCE33D855D}"
+	ProjectSection(SolutionItems) = preProject
+		kong.yml = kong.yml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AFORO255.MS.TEST.Invoice", "AFORO255.MS.TEST.Invoice\AFORO255.MS.TEST.Invoice.csproj", "{5FB6909F-7D41-40DE-88A5-617121AE3A0C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AFORO255.MS.TEST.Pay", "AFORO255.MS.TEST.Pay\AFORO255.MS.TEST.Pay.csproj", "{0B7F5DFC-7F60-441E-9409-8BA44D83BBB2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AFORO255.MS.TEST.Transaction", "AFORO255.MS.TEST.Transaction\AFORO255.MS.TEST.Transaction.csproj", "{66EDC11A-E3C8-4E78-8C6B-D1BAE71A1682}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AFORO255.MS.TEST.Security", "AFORO255.MS.TEST.Security\AFORO255.MS.TEST.Security.csproj", "{FE81465E-702C-4E50-B82E-04F9F200A56E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5FB6909F-7D41-40DE-88A5-617121AE3A0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FB6909F-7D41-40DE-88A5-617121AE3A0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FB6909F-7D41-40DE-88A5-617121AE3A0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FB6909F-7D41-40DE-88A5-617121AE3A0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B7F5DFC-7F60-441E-9409-8BA44D83BBB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B7F5DFC-7F60-441E-9409-8BA44D83BBB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B7F5DFC-7F60-441E-9409-8BA44D83BBB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B7F5DFC-7F60-441E-9409-8BA44D83BBB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66EDC11A-E3C8-4E78-8C6B-D1BAE71A1682}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66EDC11A-E3C8-4E78-8C6B-D1BAE71A1682}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66EDC11A-E3C8-4E78-8C6B-D1BAE71A1682}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66EDC11A-E3C8-4E78-8C6B-D1BAE71A1682}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE81465E-702C-4E50-B82E-04F9F200A56E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE81465E-702C-4E50-B82E-04F9F200A56E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE81465E-702C-4E50-B82E-04F9F200A56E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE81465E-702C-4E50-B82E-04F9F200A56E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1A214DEF-F7BD-4FCC-A40A-C6A1D3F3D461} = {ACADEF3E-B946-48C5-B25C-96F1D00F8864}
+		{809F717D-1678-42D0-93E9-F6EAF7D22D58} = {8CD17B18-AA27-4D4D-85E8-63CC28572199}
+		{DF514D52-5023-4763-8136-67DCE33D855D} = {809F717D-1678-42D0-93E9-F6EAF7D22D58}
+		{5FB6909F-7D41-40DE-88A5-617121AE3A0C} = {1A214DEF-F7BD-4FCC-A40A-C6A1D3F3D461}
+		{0B7F5DFC-7F60-441E-9409-8BA44D83BBB2} = {1A214DEF-F7BD-4FCC-A40A-C6A1D3F3D461}
+		{66EDC11A-E3C8-4E78-8C6B-D1BAE71A1682} = {1A214DEF-F7BD-4FCC-A40A-C6A1D3F3D461}
+		{FE81465E-702C-4E50-B82E-04F9F200A56E} = {1A214DEF-F7BD-4FCC-A40A-C6A1D3F3D461}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3466C7A7-792F-4F20-820C-2C58C4E46839}
+	EndGlobalSection
+EndGlobal
