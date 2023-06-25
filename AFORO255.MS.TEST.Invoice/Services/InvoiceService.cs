@@ -9,6 +9,8 @@ namespace AFORO255.MS.TEST.Invoice.etm.Services
 
         public InvoiceService(ContextDatabase contextDatabase) => _contextDatabase = contextDatabase;
 
+        public IEnumerable<InvoiceModel> GetAll() => _contextDatabase.Invoice.ToList();
+
         public InvoiceModel Invoice(InvoiceModel transaction)
         {
             _contextDatabase.Invoice.Add(transaction);

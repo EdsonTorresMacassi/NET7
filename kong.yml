@@ -1,34 +1,159 @@
 _format_version: "2.1"
  
 services:
+#Configuracion kong local
   - name: security-service
-    url: http://host.docker.internal:9001/api/auth
+    url: http://host.docker.internal:5001/api/auth
     plugins:
       - name: jwt
         config:
           anonymous: 9ddccc14-6866-584f-a82b-51e47864af89
     routes:
-      - name: security-route
+      - name: security-route-token
         paths:
-          - /api/token
-  - name: pay-service
-    url: http://host.docker.internal:9002/api/pay/pay
+          - /local/api/auth
+  - name: security-service
+    url: http://host.docker.internal:5001/api/auth
+    plugins:
+      - name: jwt
+        config:
+          anonymous: 9ddccc14-6866-584f-a82b-51e47864af89
     routes:
-      - name: pay-route
+      - name: security-route-listar
         paths:
-          - /api/pay/pay
+          - /local/api/auth
+  - name: pay-service
+    url: http://host.docker.internal:5002/api/pay
+    routes:
+      - name: pay-route-registrar
+        paths:
+          - /local/api/pay
+  - name: pay-service
+    url: http://host.docker.internal:5002/api/pay
+    routes:
+      - name: pay-route-listar
+        paths:
+          - /local/api/pay
   - name: transaction-service
-    url: http://host.docker.internal:9003/api/transaction
+    url: http://host.docker.internal:5003/api/transaction
     routes:
       - name: transaction-route
         paths:
-          - /api/transaction
+          - /local/api/transaction
   - name: invoice-service
-    url: http://host.docker.internal:9004/api/invoice/invoice
+    url: http://host.docker.internal:5004/api/invoice
     routes:
-      - name: invoice-route
+      - name: invoice-route-registrar
         paths:
-          - /api/invoice/invoice
+          - /local/api/invoice
+  - name: invoice-service
+    url: http://host.docker.internal:5004/api/invoice
+    routes:
+      - name: invoice-route-listar
+        paths:
+          - /local/api/invoice
+#Configuracion kong dockerizado
+  - name: security-dockerizado-service
+    url: http://app-security:8080/api/auth
+    plugins:
+      - name: jwt
+        config:
+          anonymous: 9ddccc14-6866-584f-a82b-51e47864af89
+    routes:
+      - name: security-dockerizado-route-token
+        paths:
+          - /dockerizado/api/auth
+  - name: security-dockerizado-service
+    url: http://app-security:8080/api/auth
+    plugins:
+      - name: jwt
+        config:
+          anonymous: 9ddccc14-6866-584f-a82b-51e47864af89
+    routes:
+      - name: security-dockerizado-route-listar
+        paths:
+          - /dockerizado/api/auth
+  - name: pay-dockerizado-service
+    url: http://app-pay:8080/api/pay
+    routes:
+      - name: pay-dockerizado-route-registrar
+        paths:
+          - /dockerizado/api/pay
+  - name: pay-dockerizado-service
+    url: http://app-pay:8080/api/pay
+    routes:
+      - name: pay-dockerizado-route-listar
+        paths:
+          - /dockerizado/api/pay
+  - name: transaction-dockerizado-service
+    url: http://app-transaction:8080/api/transaction
+    routes:
+      - name: transaction-dockerizado-route
+        paths:
+          - /dockerizado/api/transaction
+  - name: invoice-dockerizado-service
+    url: http://app-invoice:8080/api/invoice
+    routes:
+      - name: invoice-dockerizado-route-registrar
+        paths:
+          - /dockerizado/api/invoice
+  - name: invoice-dockerizado-service
+    url: http://app-invoice:8080/api/invoice
+    routes:
+      - name: invoice-dockerizado-route-listar
+        paths:
+          - /dockerizado/api/invoice
+#Configuracion kong balancer
+  - name: security-kong-service
+    url: http://host.docker.internal:9901/app-security/api/auth
+    plugins:
+      - name: jwt
+        config:
+          anonymous: 9ddccc14-6866-584f-a82b-51e47864af89
+    routes:
+      - name: security-kong-route-token
+        paths:
+          - /balancer/api/auth
+  - name: security-kong-service
+    url: http://host.docker.internal:9901/app-security/api/auth
+    plugins:
+      - name: jwt
+        config:
+          anonymous: 9ddccc14-6866-584f-a82b-51e47864af89
+    routes:
+      - name: security-kong-route-listar
+        paths:
+          - /balancer/api/auth
+  - name: pay-kong-service
+    url: http://host.docker.internal:9901/app-pay/api/pay
+    routes:
+      - name: pay-kong-route-registrar
+        paths:
+          - /balancer/api/pay
+  - name: pay-kong-service
+    url: http://host.docker.internal:9901/app-pay/api/pay
+    routes:
+      - name: pay-kong-route-listar
+        paths:
+          - /balancer/api/pay
+  - name: transaction-kong-service
+    url: http://host.docker.internal:9901/app-transaction/api/transaction
+    routes:
+      - name: transaction-kong-route
+        paths:
+          - /balancer/api/transaction
+  - name: invoice-kong-service
+    url: http://host.docker.internal:9901/app-invoice/api/invoice
+    routes:
+      - name: invoice-kong-route-registrar
+        paths:
+          - /balancer/api/invoice
+  - name: invoice-kong-service
+    url: http://host.docker.internal:9901/app-invoice/api/invoice
+    routes:
+      - name: invoice-kong-route-listar
+        paths:
+          - /balancer/api/invoice
 
 plugins:
 - name: cors
@@ -50,11 +175,11 @@ plugins:
     secret_is_base64: false
     run_on_preflight: true
 consumers:
-  - username: login_issuer
+  - username: issuer
     custom_id: aforo255_id
   - username: anonymous_users
     id: 9ddccc14-6866-584f-a82b-51e47864af89
 jwt_secrets:
-  - consumer: login_issuer
+  - consumer: issuer
     secret: "abcdefghijklmnopqrstuwxyz0123456789"
   - consumer: anonymous_users

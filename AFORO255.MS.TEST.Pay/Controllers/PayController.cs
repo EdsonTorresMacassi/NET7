@@ -21,7 +21,13 @@ namespace AFORO255.MS.TEST.Pay.etm.Controllers
             _eventBus = eventBus;
         }
 
-        [HttpPost("pay")]
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok(_payService.GetAll());
+        }
+
+        [HttpPost]
         public IActionResult Pay([FromBody] PayRequest request)
         {
             PayModel transaction = new PayModel(request.IdInvoice, request.Amount);

@@ -7,6 +7,8 @@ namespace AFORO255.MS.TEST.Pay.etm.Services
     {
         private readonly ContextDatabase _contextDatabase;
         public PayService(ContextDatabase contextDatabase) => _contextDatabase = contextDatabase;
+
+        public IEnumerable<PayModel> GetAll() => _contextDatabase.Pay.ToList();
         public PayModel Pay(PayModel transaction)
         {
             _contextDatabase.Pay.Add(transaction);

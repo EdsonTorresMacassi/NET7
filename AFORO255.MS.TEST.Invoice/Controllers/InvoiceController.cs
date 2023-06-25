@@ -20,14 +20,17 @@ namespace AFORO255.MS.TEST.Invoice.etm.Controllers
             //_eventBus = eventBus;
         }
 
-        [HttpPost("Invoice")]
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok(_invoiceService.GetAll());
+        }
+
+        [HttpPost]
         public IActionResult Invoice([FromBody] InvoiceRequest request)
         {
             InvoiceModel transaction = new InvoiceModel(request.Amount, request.State);
             transaction = _invoiceService.Invoice(transaction);
-
-            //_eventBus.SendCommand(new TransactionCreateCommand(transaction.Id, transaction.Amount, transaction.Type, transaction.CreationDate, transaction.AccountId));
-            //_eventBus.SendCommand(new NotificationCreateCommand(transaction.Id, transaction.Amount, transaction.Type, "Notificación", "edson.torresmacassi@gmail.com", transaction.AccountId));
             return Ok(transaction);
         }
     }
