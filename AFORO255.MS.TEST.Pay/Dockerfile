@@ -18,13 +18,33 @@
 #WORKDIR /app
 #COPY --from=publish /app/publish .
 #ENTRYPOINT ["dotnet", "AFORO255.MS.TEST.Pay.dll"]
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#FROM mcr.microsoft.com/dotnet/aspnet:7.0
+#WORKDIR /app
+#
+#COPY ./publish/ /app
+#ENV ASPNETCORE_URLS=http://+:8080
+#ENV ASPNETCORE_ENVIRONMENT docker
+#EXPOSE 8080
+#
+#ENTRYPOINT ["dotnet", "/app/AFORO255.MS.TEST.Pay.dll"]
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ARG PROJECT_NAME=AFORO255.MS.TEST.Pay
+
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+ARG PROJECT_NAME
+ENV PROJECT=$PROJECT_NAME
+WORKDIR /app
+COPY . .
+RUN dotnet restore
+RUN dotnet publish ${PROJECT}.csproj -c release -o publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:7.0
+ARG PROJECT_NAME
+ENV PROJECT=$PROJECT_NAME
 WORKDIR /app
-
-COPY ./publish/ /app
-ENV ASPNETCORE_URLS=http://+:8080
+COPY --from=build /app/publish .
+ENV ASPNETCORE_URLS http://*:8080
 ENV ASPNETCORE_ENVIRONMENT docker
 EXPOSE 8080
-
-ENTRYPOINT ["dotnet", "/app/AFORO255.MS.TEST.Pay.dll"]
+ENTRYPOINT dotnet ${PROJECT}.dll
