@@ -4,7 +4,7 @@ services:
   security:
     image: edsontorresmacassi/img-app-security
     container_name: app-security
-    restart: always
+    #restart: always
     ports:
     - 9001:8080
     networks:
@@ -12,7 +12,7 @@ services:
   pay:
     image: edsontorresmacassi/img-app-pay
     container_name: app-pay
-    restart: always
+    #restart: always
     ports:
     - 9002:8080
     networks:
@@ -20,7 +20,7 @@ services:
   transaction:
     image: edsontorresmacassi/img-app-transaction
     container_name: app-transaction
-    restart: always
+    #restart: always
     ports:
     - 9003:8080
     networks:
@@ -28,7 +28,7 @@ services:
   invoice:
     image: edsontorresmacassi/img-app-invoice
     container_name: app-invoice
-    restart: always
+    #restart: always
     ports:
     - 9004:8080
     networks:

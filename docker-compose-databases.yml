@@ -4,7 +4,7 @@ services:
   service-sql:
     image: mcr.microsoft.com/mssql/server:latest
     container_name: bd-sql
-    restart: always
+    #restart: always
     ports:
     - 1443:1433
     environment:
@@ -15,7 +15,7 @@ services:
   service-postgres:
     image: postgres:latest
     container_name: bd-postgres
-    restart: always
+    #restart: always
     environment:
     - POSTGRES_PASSWORD=Sistem@s1987
     ports:
@@ -25,7 +25,7 @@ services:
   service-mysql:
     image: mysql:latest
     container_name: bd-mysql
-    restart: always
+    #restart: always
     environment:
     - MYSQL_ROOT_PASSWORD=Sistem@s1987
     ports:
@@ -35,7 +35,7 @@ services:
   service-mongo:
     image: mongo:latest
     container_name: bd-mongo
-    restart: always
+    #restart: always
     environment:
     - MONGO_INITDB_ROOT_USERNAME=root
     - MONGO_INITDB_ROOT_PASSWORD=Sistem#s1987

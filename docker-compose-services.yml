@@ -5,7 +5,7 @@ services:
     #image: rabbitmq:latest
     image: rabbitmq:3.8.13-management
     container_name: bus-service-test
-    restart: always
+    #restart: always
     environment:
       - RABBITMQ_DEFAULT_USER=admin
       - RABBITMQ_DEFAULT_PASS=admin
@@ -17,7 +17,7 @@ services:
   service-consult:
     image: consul:1.9.10
     container_name: consult-service-test
-    restart: always
+    #restart: always
     ports:
     - 8510:8500
     networks:
@@ -25,7 +25,7 @@ services:
   service-balancer:
     image: fabiolb/fabio:1.5.15-go1.15.5
     container_name: balancer-service-test
-    restart: always
+    #restart: always
     environment:
     - FABIO_REGISTRY_CONSUL_ADDR=consult-service-test:8500 
     ports:
@@ -38,7 +38,7 @@ services:
   service-config:
     image: nacos/nacos-server:v2.0.3
     container_name: config-service-test
-    restart: always
+    #restart: always
     environment:
     - MODE=standalone
     ports:

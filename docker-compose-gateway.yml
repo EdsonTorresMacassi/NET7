@@ -3,7 +3,7 @@ services:
   service-kong:    
     image: kong:latest
     container_name: kong-service-test
-    restart: always
+    #restart: always
     volumes:
       - ./kong.yml:/usr/local/kong/declarative/kong.yml
     environment:
